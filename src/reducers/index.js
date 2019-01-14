@@ -1,23 +1,8 @@
-import { combineReducers } from 'redux'
+import {ADD_RECIPE, REMOVE_FROM_CALENDAR} from '../actions'
 
-import {
-  ADD_RECIPE,
-  REMOVE_FROM_CALENDAR,
-} from '../actions'
+// our reducer is going to specify the shape or our store
 
-function food (state = {}, action) {
-  switch (action.type) {
-    case ADD_RECIPE :
-      const { recipe } = action
-
-      return {
-        ...state,
-        [recipe.label]: recipe,
-      }
-    default :
-      return state
-  }
-}
+// first time that our reducer is called its state is equal to undefined
 
 const initialCalendarState = {
   sunday: {
@@ -57,32 +42,33 @@ const initialCalendarState = {
   },
 }
 
-function calendar (state = initialCalendarState, action) {
-  const { day, recipe, meal } = action
+
+// Reducer Function:
+// receives current state and action
+// if state is undefined then we set the state to initialCalendarState ^^^
+function calendar(state=initialCalendarState, action){
+  // this 3 variables are equal to our action coming form actions/index.js
+  const {day, recipe, meal } = action
+
+  // specify how our state will change based off these actions
+  // the state that we return from this Reducer Function is going to be the new
+  // new state of our store
 
   switch (action.type) {
-    case ADD_RECIPE :
+    case ADD_RECIPE:
+      // return the same state, but we want to modify a specific day
+      // ex: only modify if day is saturday and modify only the meal property
       return {
         ...state,
-        [day]: {
+        [day]:{ // same logic:
           ...state[day],
           [meal]: recipe.label,
         }
       }
-    case REMOVE_FROM_CALENDAR :
-      return {
-        ...state,
-        [day]: {
-          ...state[day],
-          [meal]: null,
-        }
-      }
-    default :
-      return state
+    case REMOVE_FROM_CALENDAR:
+
+    default:
+      state
+
   }
 }
-
-export default combineReducers({
-  food,
-  calendar,
-})
