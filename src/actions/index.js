@@ -7,13 +7,13 @@ export const REMOVE_FROM_CALENDAR = 'REMOVE_FROM_CALENDAR'
 
 
 // takes in an object w/ 3 properties
-export function addRecipe(day, recipe, meal){
+export function addRecipe({day, meal, recipe}){
   // returns an action(object)
   return {
     type: ADD_RECIPE,
     recipe,
     day,
-    meal,
+    meal
   }
 
 }
@@ -22,7 +22,7 @@ export function removeFromCalendar({ day, meal }){
   return{
     type: REMOVE_FROM_CALENDAR,
     day,
-    meal,
+    meal
   }
 
 }

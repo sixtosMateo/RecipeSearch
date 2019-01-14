@@ -1,5 +1,6 @@
 import {ADD_RECIPE, REMOVE_FROM_CALENDAR} from '../actions'
 
+
 // our reducer is going to specify the shape or our store
 
 // first time that our reducer is called its state is equal to undefined
@@ -58,17 +59,28 @@ function calendar(state=initialCalendarState, action){
     case ADD_RECIPE:
       // return the same state, but we want to modify a specific day
       // ex: only modify if day is saturday and modify only the meal property
+      // same logic: state at this specific day remains the same but meal was
+              // now its going to be equal to recipe.label
       return {
         ...state,
-        [day]:{ // same logic:
+        [day]:{
           ...state[day],
-          [meal]: recipe.label,
+          [meal]: recipe.label
         }
       }
+
     case REMOVE_FROM_CALENDAR:
+      // all of the state remains same except for the specific day
 
+      return {
+        ...state,
+        [day]:{// all of other meals on this day are going to remain same except
+          [meal]: null,// except for that specific meal is now going to be null
+        }
+      }
     default:
-      state
-
+      return state
   }
 }
+
+export default calendar;
