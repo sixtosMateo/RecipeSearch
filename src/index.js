@@ -8,7 +8,7 @@ import { createStore } from 'redux'
 // this comes from the reducer we created
 import reducer from './reducers'
 
-// import { Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 
 // const logger = store => next => action => {
 //   console.group(action.type)
@@ -30,7 +30,10 @@ const store = createStore(
 console.log(store.getState())
 
 ReactDOM.render(
-  <App store={store}/>,
+
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('root')
 )
 registerServiceWorker()
