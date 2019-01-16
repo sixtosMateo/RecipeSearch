@@ -8,6 +8,7 @@ import ArrowRightIcon from 'react-icons/lib/fa/arrow-circle-right'
 import Loading from 'react-loading'
 import { fetchRecipes } from '../utils/api'
 import FoodList from './FoodList'
+import ShoppingList from './ShoppingList'
 
 class App extends Component {
 
@@ -49,7 +50,6 @@ class App extends Component {
        loadingFood: false,
      })))
 
-     
  }
 
 
