@@ -1,6 +1,31 @@
 import {ADD_RECIPE, REMOVE_FROM_CALENDAR} from '../actions'
 
 
+
+// whenever the ADD_RECIPE is dispatch not only do we modify calendar state
+// but also modify the food section of the store
+
+// how do we combine the Calendar Reducer and Food reducer 
+
+function food(state={},action){
+  switch(action.type){
+
+    case ADD_RECIPE:
+      const { recipe } = action
+      // state will remain same but the recipe will equal to  the action recipe
+      return {
+        ...state,
+        [recipe.label]: recipe
+      }
+
+    default:
+      return state
+
+  }
+
+}
+
+
 // our reducer is going to specify the shape or our store
 
 // first time that our reducer is called its state is equal to undefined
