@@ -32,11 +32,30 @@ class App extends Component {
   }
 }
 
+// FOOD REDUCER
+// example say we have label would be pizza
+// {
+//   pizza:{
+        // all the information of this label
+//    }
+// }
+//  so this would be what our food slice would look like
+
+// CALENDAR REDUCER
+// {
+//   moday :{
+//     breakfast: here would be the id for the food in this case 'pizza'
+//   }
+// }
+
 
 // this function is going to map our Redux state to component props
 // recieve our state what ever we return from this component will pass to our as
 // long as we pass mapStateToProps as the first argument in connect
-function mapStateToProps(calendar){
+
+// now we are passing food reducer but as object since we have combineReducers
+// anything that has to do with recipe is going to live inside food reducers
+function mapStateToProps({calendar, food}){
   const dayOrder = ['sunday','monday', 'tuesday','wednesday','thursday','friday','saturday']
 
   return{
@@ -46,7 +65,9 @@ function mapStateToProps(calendar){
       meals: Object.keys(calendar[day]).reduce((meals,meal) =>
       { // if these calendar on this day and this meal exist or is a thing
         meals[meal] = calendar[day][meal]
-          ? calendar[day][meal]
+            // BECAUSE OF TOP EXAMPLE calendar[day][meal] NEEDS TO BE IN inside food[]
+            // BECAUSE IT REPRESENTS AS THE ID OF FOOD REDUCER 
+          ? food[calendar[day][meal]]
           : null
         return meals
       },{})

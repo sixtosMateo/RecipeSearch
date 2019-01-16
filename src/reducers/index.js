@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux'
 import {ADD_RECIPE, REMOVE_FROM_CALENDAR} from '../actions'
 
 
@@ -5,7 +6,7 @@ import {ADD_RECIPE, REMOVE_FROM_CALENDAR} from '../actions'
 // whenever the ADD_RECIPE is dispatch not only do we modify calendar state
 // but also modify the food section of the store
 
-// how do we combine the Calendar Reducer and Food reducer 
+// how do we combine the Calendar Reducer and Food reducer
 
 function food(state={},action){
   switch(action.type){
@@ -108,4 +109,7 @@ function calendar(state=initialCalendarState, action){
   }
 }
 
-export default calendar;
+export default combineReducers({
+  food,
+  calendar
+})
